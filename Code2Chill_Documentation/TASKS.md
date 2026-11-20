@@ -14,25 +14,25 @@ Status key: [ ] not started · [~] in progress · [x] complete · [!] blocked
 - [ ] Confirm domain ownership and launch requirements
 
 ## Phase 1 — Foundation
-- [ ] Initialize Next.js App Router + TypeScript
-- [ ] Configure linting and formatting
-- [ ] Configure Tailwind and design tokens
-- [ ] Add approved fonts and logo
-- [ ] Build responsive header and footer
-- [ ] Build shared UI components
-- [ ] Verify mobile navigation and accessibility
+- [x] Initialize Next.js App Router + TypeScript
+- [x] Configure linting and formatting
+- [x] Configure Tailwind and design tokens
+- [x] Add approved fonts and logo
+- [x] Build responsive header and footer
+- [x] Build shared UI components
+- [x] Verify mobile navigation and accessibility
 
 ## Phase 2 — Public pages
-- [ ] Home
-- [ ] Team
-- [ ] Events listing
-- [ ] Event detail
-- [ ] Projects listing
-- [ ] Project detail
-- [ ] Gallery
-- [ ] Announcements display
-- [ ] Join/contact
-- [ ] SEO metadata and social previews
+- [x] Home
+- [x] Team
+- [x] Events listing
+- [x] Event detail
+- [x] Projects listing
+- [x] Project detail
+- [x] Gallery
+- [x] Announcements display
+- [x] Contact page & official channels
+- [x] SEO metadata and social previews
 
 ## Phase 3 — Backend
 - [ ] Create Supabase project
@@ -78,7 +78,7 @@ Status key: [ ] not started · [~] in progress · [x] complete · [!] blocked
 - [ ] Admin handover guide
 
 ## Current phase
-Discovery and content collection. Update this section as work progresses.
+Phase 2 Brand Alignment & Student-Driven Refinement complete. Official logo integrated. Awaiting user review before initiating Phase 3 (Backend & Supabase Foundation).
 
 ## Blockers
 - Awaiting confirmed club content, logo inspection and member/event assets.

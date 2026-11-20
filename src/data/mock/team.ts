@@ -1,0 +1,76 @@
+import { TeamMember } from "@/types";
+
+/**
+ * Student-only team members for Code2Chill
+ * NOTE: Code2Chill is an independent student technical club.
+ * These are development placeholders for student members.
+ */
+export const mockTeamMembers: TeamMember[] = [
+  {
+    id: "tm-001",
+    name: "[Student Lead] Aarav Patel",
+    slug: "lead-aarav-patel",
+    designation: "President & Technical Lead",
+    groupName: "Club Leadership",
+    bio: "Passionate about building scalable web systems, developer tooling, and fostering a collaborative peer-learning culture among student engineers.",
+    photoPath: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80",
+    linkedinUrl: "https://linkedin.com/in/placeholder",
+    emailPublic: "president.c2c@placeholder.chitkara.edu",
+    displayOrder: 1,
+    isPublished: true,
+    createdAt: "2026-01-10T10:00:00Z",
+  },
+  {
+    id: "tm-002",
+    name: "[Student Lead] Ananya Verma",
+    slug: "lead-ananya-verma",
+    designation: "Vice President & Community Lead",
+    groupName: "Club Leadership",
+    bio: "Focuses on community outreach, organizing hands-on hackathons, and empowering newcomer student developers in open-source engineering.",
+    photoPath: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=80",
+    linkedinUrl: "https://linkedin.com/in/placeholder",
+    emailPublic: "vp.c2c@placeholder.chitkara.edu",
+    displayOrder: 2,
+    isPublished: true,
+    createdAt: "2026-01-10T10:00:00Z",
+  },
+  {
+    id: "tm-003",
+    name: "[Student Lead] Rohan Mehta",
+    slug: "member-rohan-mehta",
+    designation: "Frontend & Design Lead",
+    groupName: "Technical Leads",
+    bio: "Specializes in React, Next.js, accessibility, interface systems, and component architecture for student software projects.",
+    photoPath: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80",
+    linkedinUrl: "https://linkedin.com/in/placeholder",
+    displayOrder: 3,
+    isPublished: true,
+    createdAt: "2026-01-15T10:00:00Z",
+  },
+  {
+    id: "tm-004",
+    name: "[Student Lead] Kabir Nair",
+    slug: "member-kabir-nair",
+    designation: "Systems & AI Track Lead",
+    groupName: "Technical Leads",
+    bio: "Conducts practical student workshops on systems engineering, terminal basics, and machine learning fundamentals.",
+    photoPath: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=80",
+    linkedinUrl: "https://linkedin.com/in/placeholder",
+    displayOrder: 4,
+    isPublished: true,
+    createdAt: "2026-01-15T10:00:00Z",
+  },
+  {
+    id: "tm-005",
+    name: "[Student Member] Priya Sen",
+    slug: "member-priya-sen",
+    designation: "Backend & Cloud Engineer",
+    groupName: "Core Team",
+    bio: "Enjoys microservices, PostgreSQL query optimization, and automating student project deployment pipelines.",
+    photoPath: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&auto=format&fit=crop&q=80",
+    linkedinUrl: "https://linkedin.com/in/placeholder",
+    displayOrder: 5,
+    isPublished: true,
+    createdAt: "2026-01-15T10:00:00Z",
+  },
+];
