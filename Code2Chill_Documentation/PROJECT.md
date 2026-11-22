@@ -3,75 +3,63 @@
 ## 1. Project identity
 - Project name: Code2Chill
 - Project type: Official university technical-club website and content platform
-- University: Chitkara University (confirm the exact campus/name wording before publishing)
-- Audience: University students, prospective members, alumni, faculty, collaborators and the general public
-- Access: Public read access; restricted administrator area
-- Existing assets: Club logo exists. Official university name and Instagram information are available. LinkedIn profiles of displayed members may be collected with permission.
+- University: Chitkara University (Punjab, India) — student-led community affiliation; no permanent room, office or physical building is claimed.
+- Audience: University students, prospective members, alumni, collaborators and the technical community.
+- Access: Public read access; restricted multi-administrator area.
+- Verified brand assets: Official club logo. Confirmed official Instagram: `https://www.instagram.com/code2chill.osl/`.
+- Verified constraints:
+  - No official club email address currently exists (removed all placeholders; direct contact via Instagram or queued inquiry form).
+  - No permanent club office or physical room exists on campus (university affiliation only).
+  - No official GitHub organization or repository currently exists.
+  - Member project repositories are private by default and require contributor consent before publication.
 
 ## 2. Purpose
-Code2Chill is a student technical community. The website should communicate what the club stands for, document its activities, showcase work by its members, and make it easy to discover and register for events.
+Code2Chill is an active student technical community at Chitkara University. The website communicates what the club stands for, documents its activities, showcases work by its members with strict privacy protection, and makes it easy to discover events and connect via official channels.
 
-Suggested positioning (subject to club approval):
+Suggested positioning:
 “Learn. Build. Connect.”
-Suggested description:
-“Code2Chill is a student-led technical community that brings curious minds together to explore technology, develop practical skills, collaborate on projects and learn through workshops, competitions, talks and community initiatives.”
 
-Do not claim that the club runs a particular activity unless the club confirms it.
+Description:
+“Code2Chill is an active student-driven technical community at Chitkara University. We bring curious minds together to explore modern engineering, build practical software, and collaborate across technical disciplines.”
 
 ## 3. Outcomes
-1. Visitors can understand the club within a few seconds.
-2. Visitors can discover current and previous events.
-3. Visitors can learn about the leadership and core team.
-4. Visitors can explore projects built or contributed to by members.
-5. Visitors can find official social/contact channels.
-6. Authorized administrators can update website content safely.
-7. Future club teams can inherit and operate the site without rebuilding it.
+1. Visitors can understand the club within a few seconds without artificial AI tropes.
+2. Visitors can discover current and previous workshops, hackathons, and sessions.
+3. Visitors can learn about student leads and track mentors.
+4. Visitors can explore student projects with privacy and ownership respected (no forced public repos).
+5. Visitors can browse event-based photo albums documenting community memories.
+6. Visitors can connect directly via verified Instagram or submit inquiries for coordinator review.
+7. Authorized administrators can update website content safely via Supabase backend.
+8. Future club teams can inherit and operate the site seamlessly.
 
 ## 4. Scope
 ### Initial release
-- Home
-- About/club information (homepage section or dedicated route as decided in design)
-- Team
-- Events: upcoming, past and event detail
-- Projects and project detail
-- Gallery
-- Announcements
-- Join/contact information
-- Admin login and role-protected dashboard
-- Content management for events, team, projects, gallery and announcements
-- Public social links and university information
+- Home (Hero, About, Activities, Featured Event, Selected Projects, Team Preview, FAQ, Contact)
+- Team directory (categorized student leads and track coordinators)
+- Events: upcoming, past, and event details with live countdown timer
+- Projects: student showcase with Problem Solved, tech stack, optional live demo, and strict repository privacy controls
+- Gallery: event-wise photo albums with cover photos, photo counts, and interactive modal viewer
+- Contact: official Instagram integration and queued inquiry submission
+- Admin login and role-protected dashboard (Phase 4)
+- Content management for events, team, projects, albums/photos, and announcements (Phase 4)
 
 ### Later / optional
 - Built-in event registration and participant management
-- Email confirmations and reminders
 - Member accounts
-- Certificates
+- Certificates of participation
 - Newsletter
-- Sponsors/partners management
-- Search and advanced filtering
 
 ## 5. Non-goals
 - Do not build a social network or chat platform.
 - Do not add public user accounts unless separately approved.
-- Do not add payments or ticketing unless explicitly required.
-- Do not add AI features merely to make the website appear advanced.
-- Do not scrape social profiles or publish personal information without permission.
+- Do not invent fake emails, rooms, phone numbers, or GitHub links.
+- Do not force students to make personal code repositories public.
+- Do not use stereotypical AI-generated decorative monospace typography on normal UI elements.
 
 ## 6. Success criteria
-- The site works on mobile, tablet and desktop.
-- Public content is database-driven after backend integration.
+- The site works responsively on mobile, tablet, and desktop.
+- Clean, natural typography: modern sans-serif (Inter) for headings, body, cards, and details; monospace reserved strictly for actual code.
+- Public content is database-driven after Supabase backend integration.
 - Admin actions are authenticated and authorized on the server/database.
 - No secrets are exposed in browser bundles or public repositories.
-- Empty, loading, error and unavailable states are designed.
-- The site is usable with keyboard navigation and accessible labels.
-- A new club admin can perform routine updates using written instructions.
-
-## 7. Unknowns requiring confirmation
-- Exact university/campus naming and approved branding rules.
-- Official club tagline and approved club description.
-- Official logo files and any brand colour restrictions.
-- Current leadership names, designations, photos and consent.
-- Event categories and whether registration is external or internal for each event.
-- Official contact email and social URLs.
-- Whether faculty coordinator details may be public.
-- Domain name and hosting ownership.
+- Zero broken links or placeholder emails.

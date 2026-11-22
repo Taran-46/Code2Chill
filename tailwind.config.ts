@@ -76,9 +76,20 @@ const config: Config = {
         "2xl": "1.25rem",
       },
       boxShadow: {
-        subtle: "0 1px 3px 0 rgba(11, 18, 36, 0.04), 0 1px 2px 0 rgba(11, 18, 36, 0.02)",
-        card: "0 4px 12px -2px rgba(11, 18, 36, 0.06), 0 2px 4px -1px rgba(11, 18, 36, 0.03)",
-        lifted: "0 14px 30px -6px rgba(11, 18, 36, 0.12), 0 6px 12px -3px rgba(11, 18, 36, 0.05)",
+        subtle: "0 1px 2px 0 rgba(0, 0, 0, 0.6)",
+        card: "0 4px 20px -2px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.08)",
+        lifted: "0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(56, 189, 248, 0.2)",
+        glow: "0 0 30px -5px rgba(56, 189, 248, 0.25)",
+        "glow-lg": "0 0 50px -10px rgba(37, 99, 235, 0.35)",
+      },
+      keyframes: {
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-33.333333%)" },
+        },
+      },
+      animation: {
+        marquee: "marquee 25s linear infinite",
       },
     },
   },

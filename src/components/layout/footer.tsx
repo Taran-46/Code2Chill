@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowUpRight, Instagram, Github, Linkedin, Mail, Shield } from "lucide-react";
+import { ArrowUpRight, Instagram, Linkedin, Shield } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 import { Container } from "./container";
 import { mockSiteSettings } from "@/data/mock/site-settings";
@@ -22,40 +22,25 @@ export function Footer() {
                 href={mockSiteSettings.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-slate-700 text-slate-400 hover:text-white hover:bg-slate-800/60 transition-colors"
-                aria-label="Instagram profile"
+                className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-slate-700 text-slate-400 hover:text-brand-cyan hover:border-brand-cyan/40 hover:bg-slate-800/60 transition-colors"
+                aria-label="Code2Chill Official Instagram"
+                title="Code2Chill on Instagram"
               >
                 <Instagram className="w-4 h-4" />
               </a>
-              {mockSiteSettings.githubUrl && (
-                <a
-                  href={mockSiteSettings.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-slate-700 text-slate-400 hover:text-white hover:bg-slate-800/60 transition-colors"
-                  aria-label="GitHub organization"
-                >
-                  <Github className="w-4 h-4" />
-                </a>
-              )}
-              {mockSiteSettings.linkedinUrl && (
-                <a
-                  href={mockSiteSettings.linkedinUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-slate-700 text-slate-400 hover:text-white hover:bg-slate-800/60 transition-colors"
-                  aria-label="LinkedIn page"
-                >
-                  <Linkedin className="w-4 h-4" />
-                </a>
-              )}
               <a
-                href={`mailto:${mockSiteSettings.contactEmail}`}
-                className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-slate-700 text-slate-400 hover:text-white hover:bg-slate-800/60 transition-colors"
-                aria-label="Contact email"
+                href={mockSiteSettings.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-slate-700 text-slate-400 hover:text-brand-cyan hover:border-brand-cyan/40 hover:bg-slate-800/60 transition-colors"
+                aria-label="Code2Chill Official LinkedIn"
+                title="Code2Chill on LinkedIn"
               >
-                <Mail className="w-4 h-4" />
+                <Linkedin className="w-4 h-4" />
               </a>
+              <span className="text-xs text-slate-400 font-sans">
+                Official Social Channels
+              </span>
             </div>
           </div>
 
@@ -125,21 +110,19 @@ export function Footer() {
               href="/admin/login"
               className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-300 hover:text-brand-blue-light transition-colors"
             >
-              <Shield className="w-3.5 h-3.5" />
-              <span>Admin Portal</span>
+              <Shield className="w-3.5 h-3.5 text-brand-cyan" />
+              <span>Coordinator Access</span>
             </Link>
           </div>
         </div>
 
-        {/* Bottom Sub-bar */}
+        {/* Bottom Bar */}
         <div className="py-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <div>
-            © {new Date().getFullYear()} Code2Chill · Student Technical Club at Chitkara University. All rights reserved.
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="font-mono text-[11px]">Timezone: Asia/Kolkata (IST)</span>
+          <p>© {new Date().getFullYear()} Code2Chill · Chitkara University, Punjab. Student-led community.</p>
+          <div className="flex items-center gap-4 text-slate-400 font-sans">
+            <span>Asia/Kolkata (IST)</span>
             <span>·</span>
-            <span>Student-Driven Community</span>
+            <span>All rights reserved</span>
           </div>
         </div>
       </Container>

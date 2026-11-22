@@ -29,14 +29,14 @@ export function Header() {
   const banner = activeAnnouncements.length > 0 ? activeAnnouncements[0] : null;
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-border bg-surface/90 backdrop-blur-md transition-colors shadow-subtle">
+    <header className="sticky top-0 z-40 w-full border-b border-white/8 bg-[#030712]/85 backdrop-blur-xl transition-colors shadow-subtle">
       {/* Top Announcement Bar (Strictly Data-Driven) */}
       {banner && (
-        <div className="bg-[#0A0F1D] text-slate-200 px-4 py-2 text-xs font-mono tracking-tight text-center flex items-center justify-center gap-2 border-b border-slate-800">
-          <span className="inline-flex items-center gap-1.5 bg-brand-blue text-white font-bold px-2 py-0.5 rounded text-[10px] tracking-wider uppercase font-sans">
+        <div className="bg-[#070B16] text-slate-300 px-4 py-1.5 text-xs font-sans tracking-tight text-center flex items-center justify-center gap-2 border-b border-white/8">
+          <span className="inline-flex items-center gap-1.5 bg-brand-cyan/15 text-brand-cyan border border-brand-cyan/30 font-bold px-2 py-0.5 rounded text-[10px] tracking-wider uppercase font-sans">
             <Sparkles className="w-3 h-3" /> Announcement
           </span>
-          <span className="truncate max-w-xl font-sans font-medium text-slate-200">
+          <span className="truncate max-w-xl font-sans font-medium text-slate-300">
             {banner.title}
           </span>
           {banner.targetUrl && (
@@ -53,7 +53,7 @@ export function Header() {
 
       {/* Main Navigation Bar */}
       <Container>
-        <div className="flex h-16 sm:h-20 items-center justify-between gap-4">
+        <div className="flex h-14 items-center justify-between gap-4">
           {/* Logo with official emblem */}
           <Logo showTagline size="md" />
 
@@ -72,8 +72,8 @@ export function Header() {
                   className={cn(
                     "relative px-3.5 py-2 text-sm font-medium rounded-lg transition-colors",
                     isActive
-                      ? "text-brand-blue font-semibold bg-brand-ice/80 border border-blue-200/60 shadow-subtle"
-                      : "text-ink-muted hover:text-ink hover:bg-canvas-muted"
+                      ? "text-white font-semibold bg-white/[0.08] border border-white/15 shadow-[0_0_15px_-3px_rgba(56,189,248,0.25)]"
+                      : "text-slate-400 hover:text-white hover:bg-white/[0.04]"
                   )}
                 >
                   {link.label}
@@ -96,7 +96,7 @@ export function Header() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
-              className="inline-flex lg:hidden items-center justify-center rounded-lg p-2 text-ink-muted hover:bg-canvas-muted hover:text-ink border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
+              className="inline-flex lg:hidden items-center justify-center rounded-lg p-2 text-slate-400 hover:bg-white/[0.06] hover:text-white border border-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan"
               aria-label="Open navigation menu"
               aria-expanded={mobileMenuOpen}
             >

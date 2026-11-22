@@ -66,18 +66,13 @@ export function Logo({
             className={cn(
               "font-display font-extrabold tracking-tight",
               textSizes[size],
-              inverted ? "text-white" : "text-ink"
+              "text-white"
             )}
           >
-            Code<span className="text-brand-blue font-black">2</span>Chill
+            Code<span className="text-brand-cyan font-black">2</span>Chill
           </span>
           <span
-            className={cn(
-              "rounded px-1.5 py-0.5 text-[9px] font-sans font-semibold tracking-wider uppercase",
-              inverted
-                ? "bg-slate-800 text-slate-300 border border-slate-700"
-                : "bg-blue-50 text-brand-navy border border-blue-200/60"
-            )}
+            className="rounded px-1.5 py-0.5 text-[9px] font-sans font-semibold tracking-wider uppercase bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/25"
           >
             Club
           </span>
@@ -85,10 +80,7 @@ export function Logo({
 
         {showTagline && (
           <span
-            className={cn(
-              "text-[11px] font-medium tracking-tight mt-0.5",
-              inverted ? "text-slate-400" : "text-ink-muted"
-            )}
+            className="text-[11px] font-medium tracking-tight mt-0.5 text-slate-400 font-sans"
           >
             Chitkara University
           </span>

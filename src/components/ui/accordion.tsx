@@ -24,7 +24,7 @@ export function Accordion({ items, defaultOpenId, className }: AccordionProps) {
   };
 
   return (
-    <div className={cn("divide-y divide-border rounded-xl border border-border bg-surface", className)}>
+    <div className={cn("divide-y divide-white/8 rounded-xl border border-white/10 bg-[#080E1E] shadow-card", className)}>
       {items.map((item) => {
         const isOpen = openId === item.id;
         const buttonId = `accordion-btn-${item.id}`;
@@ -39,13 +39,13 @@ export function Accordion({ items, defaultOpenId, className }: AccordionProps) {
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => toggle(item.id)}
-                className="flex w-full items-center justify-between py-4 px-5 text-left font-display font-semibold text-base sm:text-lg text-ink hover:text-brand-lime-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
+                className="flex w-full items-center justify-between py-4 px-5 text-left font-display font-semibold text-base sm:text-lg text-white hover:text-brand-cyan transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan"
               >
                 <span>{item.question}</span>
                 <ChevronDown
                   className={cn(
-                    "w-4 h-4 text-ink-muted transition-transform duration-200 shrink-0 ml-4",
-                    isOpen && "rotate-180 text-ink"
+                    "w-4 h-4 text-slate-400 transition-transform duration-200 shrink-0 ml-4",
+                    isOpen && "rotate-180 text-brand-cyan"
                   )}
                   aria-hidden="true"
                 />
@@ -58,7 +58,7 @@ export function Accordion({ items, defaultOpenId, className }: AccordionProps) {
               aria-labelledby={buttonId}
               hidden={!isOpen}
               className={cn(
-                "px-5 pb-5 pt-0 text-sm sm:text-base text-ink-muted leading-relaxed",
+                "px-5 pb-5 pt-0 text-sm sm:text-base text-slate-300 leading-relaxed",
                 !isOpen && "hidden"
               )}
             >

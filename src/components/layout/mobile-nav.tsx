@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { X, ArrowRight, Instagram, Github, Mail } from "lucide-react";
+import { X, ArrowRight, Instagram } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -51,20 +51,20 @@ export function MobileNav({ isOpen, onClose, navLinks }: MobileNavProps) {
     >
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-ink/40 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-black/75 backdrop-blur-sm transition-opacity"
         onClick={onClose}
         aria-hidden="true"
       />
 
       {/* Drawer */}
-      <div className="relative ml-auto flex h-full w-full max-w-sm flex-col bg-canvas border-l border-border p-6 shadow-lifted">
+      <div className="relative ml-auto flex h-full w-full max-w-sm flex-col bg-[#030712] border-l border-white/10 p-6 shadow-lifted">
         {/* Header */}
-        <div className="flex items-center justify-between pb-6 border-b border-border">
+        <div className="flex items-center justify-between pb-6 border-b border-white/10">
           <Logo size="sm" />
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-2 text-ink-muted hover:bg-canvas-muted hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink"
+            className="rounded-lg p-2 text-slate-400 hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan"
             aria-label="Close navigation menu"
           >
             <X className="h-5 w-5" />
@@ -84,15 +84,15 @@ export function MobileNav({ isOpen, onClose, navLinks }: MobileNavProps) {
                     className={cn(
                       "flex items-center justify-between rounded-lg px-4 py-3 text-base font-medium transition-colors",
                       isActive
-                        ? "bg-surface font-semibold text-ink shadow-subtle border border-border/80"
-                        : "text-ink-muted hover:bg-canvas-muted hover:text-ink"
+                        ? "bg-white/[0.08] font-semibold text-white shadow-subtle border border-white/15"
+                        : "text-slate-400 hover:bg-white/[0.04] hover:text-white"
                     )}
                   >
                     <span>{link.label}</span>
                     <ArrowRight
                       className={cn(
                         "h-4 w-4 transition-transform",
-                        isActive ? "text-brand-lime-dark translate-x-1" : "opacity-0"
+                        isActive ? "text-brand-cyan translate-x-1" : "opacity-0"
                       )}
                     />
                   </Link>
@@ -103,7 +103,7 @@ export function MobileNav({ isOpen, onClose, navLinks }: MobileNavProps) {
         </nav>
 
         {/* Footer info & CTA */}
-        <div className="pt-6 border-t border-border space-y-4">
+        <div className="pt-6 border-t border-white/10 space-y-4">
           <Link href="/contact" onClick={onClose} className="w-full block">
             <Button variant="primary" className="w-full justify-between">
               <span>Contact & Connect</span>
@@ -111,26 +111,17 @@ export function MobileNav({ isOpen, onClose, navLinks }: MobileNavProps) {
             </Button>
           </Link>
 
-          <div className="flex items-center justify-between pt-2 text-ink-muted">
+          <div className="flex items-center justify-between pt-2 text-slate-400">
             <span className="text-xs">Chitkara University</span>
             <div className="flex items-center gap-2">
               <a
-                href="https://instagram.com/code2chill"
+                href="https://www.instagram.com/code2chill.osl/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-1.5 rounded hover:text-ink hover:bg-canvas-muted"
+                className="p-1.5 rounded hover:text-white hover:bg-white/[0.08] transition-colors"
                 aria-label="Code2Chill Instagram"
               >
                 <Instagram className="w-4 h-4" />
-              </a>
-              <a
-                href="https://github.com/code2chill"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-1.5 rounded hover:text-ink hover:bg-canvas-muted"
-                aria-label="Code2Chill GitHub"
-              >
-                <Github className="w-4 h-4" />
               </a>
             </div>
           </div>

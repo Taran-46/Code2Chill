@@ -13,7 +13,7 @@ export default function NotFound() {
     <div className="py-24 sm:py-32">
       <Container size="narrow">
         <div className="rounded-2xl border border-border bg-surface p-8 sm:p-14 text-center space-y-6 shadow-subtle">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-canvas px-3 py-1 font-mono text-xs text-ink-muted">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-canvas px-3 py-1 text-xs text-ink-muted font-medium">
             <span>HTTP Status 404</span>
           </div>
 

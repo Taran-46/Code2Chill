@@ -3,6 +3,9 @@ import Link from "next/link";
 import { ArrowUpRight, Linkedin, Mail, Users } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Badge } from "@/components/ui/badge";
+import { FadeUp } from "@/components/effects/fade-up";
+import { ScrollReveal } from "@/components/effects/scroll-reveal";
+import { StaggerChildren, StaggerItem } from "@/components/effects/stagger-children";
 import { getMockTeam } from "@/data/mock";
 import { TeamGroup } from "@/types";
 
@@ -27,23 +30,29 @@ export default function TeamPage() {
   })).filter((g) => g.members.length > 0);
 
   return (
-    <div className="py-12 sm:py-20 space-y-16">
+    <div className="pt-4 sm:pt-6 pb-16 sm:pb-20 space-y-12">
       {/* Header */}
       <section>
         <Container>
           <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-brand-ice px-3.5 py-1 shadow-subtle">
-              <Users className="w-3.5 h-3.5 text-brand-blue" />
-              <span className="text-xs font-sans font-medium text-brand-navy">
-                Student Directory
-              </span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl font-display font-extrabold text-ink tracking-tight">
-              Student Leadership & Core Team
-            </h1>
-            <p className="editorial-lead text-base sm:text-lg text-ink-muted">
-              Code2Chill is entirely student-founded and student-led. Our coordinators volunteer their time to organize hands-on coding workshops, lead hackathons, and mentor fellow student developers across campus.
-            </p>
+            <FadeUp delay={0.08}>
+              <div className="inline-flex items-center gap-2 rounded-full border border-brand-cyan/25 bg-brand-cyan/10 px-3.5 py-1 shadow-subtle">
+                <Users className="w-3.5 h-3.5 text-brand-cyan" />
+                <span className="text-xs font-sans font-medium text-brand-cyan">
+                  Student Directory
+                </span>
+              </div>
+            </FadeUp>
+            <FadeUp delay={0.18}>
+              <h1 className="text-4xl sm:text-5xl font-display font-extrabold text-white tracking-tight">
+                Student Leadership & Core Team
+              </h1>
+            </FadeUp>
+            <FadeUp delay={0.28}>
+              <p className="editorial-lead text-base sm:text-lg text-slate-300">
+                Code2Chill is entirely student-founded and student-led. Our coordinators volunteer their time to organize hands-on coding workshops, lead hackathons, and mentor fellow student developers across campus.
+              </p>
+            </FadeUp>
           </div>
         </Container>
       </section>
@@ -55,92 +64,74 @@ export default function TeamPage() {
             {grouped.map(({ group, members }) => (
               <div key={group} className="space-y-8">
                 {/* Section Subhead */}
-                <div className="flex items-center justify-between border-b border-border pb-4">
-                  <div className="flex items-center gap-3">
-                    <h2 className="text-2xl font-display font-bold text-ink">
-                      {group}
-                    </h2>
-                    <Badge variant="brand" size="sm">
-                      {members.length} {members.length === 1 ? "member" : "members"}
-                    </Badge>
-                  </div>
-                  <span className="text-xs text-ink-muted hidden sm:inline-block">
-                    Chitkara University
-                  </span>
-                </div>
-
-                {/* Member Cards Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {members.map((member) => (
-                    <div
-                      key={member.id}
-                      className="rounded-xl border border-border bg-surface p-6 space-y-5 shadow-subtle hover:border-brand-blue/40 hover:shadow-card transition-all flex flex-col justify-between"
-                    >
-                      <div className="space-y-4">
-                        <div className="flex items-start gap-4">
-                          {member.photoPath ? (
-                            <div className="w-16 h-16 rounded-full overflow-hidden border border-slate-200 bg-canvas-muted shrink-0 shadow-subtle">
-                              <img
-                                src={member.photoPath}
-                                alt={member.name}
-                                className="w-full h-full object-cover"
-                              />
-                            </div>
-                          ) : (
-                            <div className="w-16 h-16 rounded-full border border-border bg-canvas-muted flex items-center justify-center text-ink-muted font-display font-bold text-xl shrink-0">
-                              {member.name.charAt(0)}
-                            </div>
-                          )}
-
-                          <div className="space-y-1">
-                            <h3 className="font-display font-bold text-lg text-ink leading-tight">
-                              {member.name}
-                            </h3>
-                            <p className="text-xs font-sans text-brand-blue font-semibold leading-normal">
-                              {member.designation}
-                            </p>
-                          </div>
-                        </div>
-
-                        {member.bio && (
-                          <p className="text-xs text-ink-muted leading-relaxed">
-                            {member.bio}
-                          </p>
-                        )}
-                      </div>
-
-                      {/* Contact & Social Links */}
-                      <div className="pt-4 border-t border-border flex items-center justify-between text-xs text-ink-muted">
-                        <span className="text-[11px] font-sans text-ink-faint">Student Developer</span>
-                        
-                        <div className="flex items-center gap-3">
-                          {member.linkedinUrl && (
-                            <a
-                              href={member.linkedinUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 hover:text-brand-blue text-ink-muted transition-colors font-medium"
-                              aria-label={`${member.name}'s LinkedIn profile`}
-                            >
-                              <Linkedin className="w-3.5 h-3.5" />
-                              <span className="text-[11px]">LinkedIn</span>
-                              <ArrowUpRight className="w-2.5 h-2.5 opacity-70" />
-                            </a>
-                          )}
-                          {member.emailPublic && (
-                            <a
-                              href={`mailto:${member.emailPublic}`}
-                              className="inline-flex items-center gap-1 hover:text-brand-blue text-ink-muted transition-colors"
-                              aria-label={`Email ${member.name}`}
-                            >
-                              <Mail className="w-3.5 h-3.5" />
-                            </a>
-                          )}
-                        </div>
-                      </div>
+                <ScrollReveal direction="left" distance={24}>
+                  <div className="flex items-center justify-between border-b border-white/8 pb-4">
+                    <div className="flex items-center gap-3">
+                      <h2 className="text-2xl font-display font-bold text-white">
+                        {group}
+                      </h2>
+                      <Badge variant="brand" size="sm">
+                        {members.length} {members.length === 1 ? "member" : "members"}
+                      </Badge>
                     </div>
+                    <span className="text-xs font-sans text-slate-400 hidden sm:inline-block">
+                      Chitkara University
+                    </span>
+                  </div>
+                </ScrollReveal>
+
+                {/* Member Cards Grid with Stagger */}
+                <StaggerChildren
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                  stagger={0.08}
+                  distance={28}
+                  direction="up"
+                >
+                  {members.map((member) => (
+                    <StaggerItem key={member.id}>
+                      <div className="rounded-xl border border-white/8 bg-[#080E1E] p-6 space-y-5 shadow-card hover:border-brand-cyan/40 hover:-translate-y-1 hover:shadow-[0_0_25px_-5px_rgba(56,189,248,0.25)] transition-all duration-300 flex flex-col justify-between h-full group">
+                        <div className="space-y-4">
+                          <div className="flex items-start gap-4">
+                            {member.photoPath ? (
+                              <div className="w-16 h-16 rounded-full overflow-hidden border border-white/12 bg-white/[0.04] shrink-0 shadow-subtle group-hover:border-brand-cyan/50 transition-colors">
+                                <img
+                                  src={member.photoPath}
+                                  alt={member.name}
+                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                />
+                              </div>
+                            ) : (
+                              <div className="w-16 h-16 rounded-full border border-white/10 bg-white/[0.04] flex items-center justify-center text-brand-cyan font-display font-bold text-xl shrink-0 group-hover:border-brand-cyan/50 group-hover:bg-brand-cyan/10 transition-colors">
+                                {member.name.charAt(0)}
+                              </div>
+                            )}
+
+                            <div className="space-y-1">
+                              <h3 className="font-display font-bold text-lg text-white leading-tight group-hover:text-brand-cyan transition-colors">
+                                {member.name}
+                              </h3>
+                              <p className="text-xs font-sans text-brand-cyan font-semibold leading-normal">
+                                {member.designation}
+                              </p>
+                            </div>
+                          </div>
+
+                          {member.bio && (
+                            <p className="text-xs text-slate-300 leading-relaxed font-sans">
+                              {member.bio}
+                            </p>
+                          )}
+                        </div>
+
+                        {/* Student Badge */}
+                        <div className="pt-4 border-t border-white/8 flex items-center justify-between text-xs text-slate-400">
+                          <span className="text-[11px] font-sans text-slate-400 font-medium">Student Developer</span>
+                          <span className="text-[11px] font-sans text-brand-cyan">Chitkara University</span>
+                        </div>
+                      </div>
+                    </StaggerItem>
                   ))}
-                </div>
+                </StaggerChildren>
               </div>
             ))}
 

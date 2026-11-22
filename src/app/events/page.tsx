@@ -18,6 +18,8 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { getMockEvents } from "@/data/mock";
 import { formatEventDateTimeRange } from "@/lib/utils/dates";
 import { getEventTemporalStatus, getEventRegistrationState } from "@/lib/utils/event-status";
+import { FadeUp } from "@/components/effects/fade-up";
+import { StaggerChildren, StaggerItem } from "@/components/effects/stagger-children";
 
 const CATEGORIES = ["All", "Workshop", "Hackathon", "Tech Talk", "Peer Session"];
 
@@ -45,23 +47,29 @@ export default function EventsPage() {
   const displayedPast = filterList(pastEvents);
 
   return (
-    <div className="py-12 sm:py-20 space-y-12">
+    <div className="pt-4 sm:pt-6 pb-16 sm:pb-20 space-y-8">
       {/* Page Header */}
       <section>
         <Container>
           <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 shadow-subtle">
-              <Calendar className="w-3.5 h-3.5 text-brand-lime-dark" />
-              <span className="text-xs font-mono font-medium text-ink">
-                Club Schedule & Archive
-              </span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl font-display font-extrabold text-ink tracking-tight">
-              Events & Workshops
-            </h1>
-            <p className="editorial-lead text-base sm:text-lg text-ink-muted">
-              Explore upcoming coding sessions, hackathons, and technical talks. All event dates and deadlines are rendered in Indian Standard Time (Asia/Kolkata).
-            </p>
+            <FadeUp delay={0.08}>
+              <div className="inline-flex items-center gap-2 rounded-full border border-brand-cyan/25 bg-brand-cyan/10 px-3.5 py-1 shadow-subtle">
+                <Calendar className="w-3.5 h-3.5 text-brand-cyan" />
+                <span className="text-xs font-sans font-medium text-brand-cyan">
+                  Club Schedule & Archive
+                </span>
+              </div>
+            </FadeUp>
+            <FadeUp delay={0.18}>
+              <h1 className="text-4xl sm:text-5xl font-display font-extrabold text-white tracking-tight">
+                Events & Workshops
+              </h1>
+            </FadeUp>
+            <FadeUp delay={0.28}>
+              <p className="editorial-lead text-base sm:text-lg text-slate-300">
+                Explore upcoming coding sessions, hackathons, and technical talks. All event dates and deadlines are rendered in Indian Standard Time (Asia/Kolkata).
+              </p>
+            </FadeUp>
           </div>
         </Container>
       </section>
@@ -70,7 +78,7 @@ export default function EventsPage() {
       <section>
         <Container>
           <div className="space-y-8">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-border pb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-white/8 pb-6">
               {/* Upcoming vs Past Tabs */}
               <Tabs defaultValue="upcoming" onValueChange={setActiveTab}>
                 <TabsList>
@@ -85,18 +93,17 @@ export default function EventsPage() {
 
               {/* Category Filter Pills */}
               <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
-                <span className="text-xs font-mono text-ink-muted mr-1 hidden md:inline">
+                <span className="text-xs font-sans font-medium text-slate-400 mr-1 hidden md:inline">
                   Filter:
                 </span>
                 {CATEGORIES.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
-                    className={`px-3 py-1 rounded-md text-xs font-mono transition-colors whitespace-nowrap ${
-                      selectedCategory === cat
-                        ? "bg-ink text-surface font-semibold shadow-subtle"
-                        : "bg-surface border border-border text-ink-muted hover:text-ink hover:bg-canvas-muted"
-                    }`}
+                    className={`px-3 py-1 rounded-md text-xs font-sans font-medium transition-colors whitespace-nowrap ${selectedCategory === cat
+                        ? "bg-brand-blue text-white font-semibold shadow-subtle border border-blue-400/30"
+                        : "bg-white/[0.04] border border-white/8 text-slate-400 hover:text-white hover:bg-white/[0.08]"
+                      }`}
                   >
                     {cat}
                   </button>
@@ -108,85 +115,91 @@ export default function EventsPage() {
             {activeTab === "upcoming" && (
               <div className="space-y-6">
                 {displayedUpcoming.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <StaggerChildren
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                    stagger={0.1}
+                    distance={28}
+                  >
                     {displayedUpcoming.map((event) => {
                       const regState = getEventRegistrationState(event);
 
                       return (
-                        <Card key={event.id} interactive className="flex flex-col">
-                          {event.posterPath && (
-                            <div className="relative h-48 sm:h-56 w-full overflow-hidden rounded-t-xl bg-canvas-muted border-b border-border">
-                              <img
-                                src={event.posterPath}
-                                alt={event.title}
-                                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                              />
-                              <div className="absolute top-3 left-3">
-                                <Badge variant="brand">{event.category}</Badge>
+                        <StaggerItem key={event.id}>
+                          <Card interactive className="flex flex-col h-full hover:border-brand-cyan/40 hover:shadow-[0_0_25px_-5px_rgba(56,189,248,0.2)] transition-all duration-300">
+                            {event.posterPath && (
+                              <div className="relative h-48 sm:h-56 w-full overflow-hidden rounded-t-xl bg-canvas-muted border-b border-border">
+                                <img
+                                  src={event.posterPath}
+                                  alt={event.title}
+                                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                                />
+                                <div className="absolute top-3 left-3">
+                                  <Badge variant="brand">{event.category}</Badge>
+                                </div>
                               </div>
-                            </div>
-                          )}
+                            )}
 
-                          <CardHeader className="space-y-3">
-                            <div className="flex items-center justify-between gap-2">
-                              {!event.posterPath && (
-                                <Badge variant="subtle">{event.category}</Badge>
-                              )}
-                              <StatusBadge type="registration" status={regState} />
-                            </div>
-
-                            <CardTitle className="text-xl hover:text-brand-lime-dark transition-colors">
-                              <Link href={`/events/${event.slug}`}>
-                                {event.title}
-                              </Link>
-                            </CardTitle>
-
-                            <CardDescription>{event.summary}</CardDescription>
-                          </CardHeader>
-
-                          <CardContent className="space-y-2 text-xs font-mono text-ink-muted">
-                            <div className="flex items-center gap-2">
-                              <Calendar className="w-4 h-4 text-brand-lime-dark shrink-0" />
-                              <span>
-                                {formatEventDateTimeRange(
-                                  event.startAt,
-                                  event.endAt,
-                                  event.timezone
+                            <CardHeader className="space-y-3">
+                              <div className="flex items-center justify-between gap-2">
+                                {!event.posterPath && (
+                                  <Badge variant="subtle">{event.category}</Badge>
                                 )}
-                              </span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <MapPin className="w-4 h-4 text-brand-lime-dark shrink-0" />
-                              <span className="truncate">{event.venue}</span>
-                            </div>
-                          </CardContent>
+                                <StatusBadge type="registration" status={regState} />
+                              </div>
 
-                          <CardFooter className="pt-4 border-t border-border mt-auto">
-                            <div className="flex items-center justify-between w-full">
-                              <Link
-                                href={`/events/${event.slug}`}
-                                className="text-xs font-semibold text-ink hover:text-brand-lime-dark"
-                              >
-                                View Agenda & Rules →
-                              </Link>
+                              <CardTitle className="text-xl hover:text-brand-cyan transition-colors">
+                                <Link href={`/events/${event.slug}`}>
+                                  {event.title}
+                                </Link>
+                              </CardTitle>
 
-                              {event.registrationUrl && regState === "open" && (
-                                <a
-                                  href={event.registrationUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-lime-dark hover:underline"
+                              <CardDescription>{event.summary}</CardDescription>
+                            </CardHeader>
+
+                            <CardContent className="space-y-2 text-xs font-sans text-slate-300">
+                              <div className="flex items-center gap-2">
+                                <Calendar className="w-4 h-4 text-brand-cyan shrink-0" />
+                                <span>
+                                  {formatEventDateTimeRange(
+                                    event.startAt,
+                                    event.endAt,
+                                    event.timezone
+                                  )}
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-2">
+                                <MapPin className="w-4 h-4 text-brand-cyan shrink-0" />
+                                <span className="truncate">{event.venue}</span>
+                              </div>
+                            </CardContent>
+
+                            <CardFooter className="pt-4 border-t border-border mt-auto">
+                              <div className="flex items-center justify-between w-full">
+                                <Link
+                                  href={`/events/${event.slug}`}
+                                  className="text-xs font-semibold text-ink hover:text-brand-cyan"
                                 >
-                                  <span>RSVP Form</span>
-                                  <ExternalLink className="w-3.5 h-3.5" />
-                                </a>
-                              )}
-                            </div>
-                          </CardFooter>
-                        </Card>
+                                  View Agenda & Rules →
+                                </Link>
+
+                                {event.registrationUrl && regState === "open" && (
+                                  <a
+                                    href={event.registrationUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-cyan hover:underline"
+                                  >
+                                    <span>RSVP Form</span>
+                                    <ExternalLink className="w-3.5 h-3.5" />
+                                  </a>
+                                )}
+                              </div>
+                            </CardFooter>
+                          </Card>
+                        </StaggerItem>
                       );
                     })}
-                  </div>
+                  </StaggerChildren>
                 ) : (
                   <div className="rounded-2xl border border-dashed border-border bg-surface p-12 text-center space-y-3">
                     <Calendar className="w-8 h-8 text-ink-muted mx-auto" />
@@ -240,9 +253,9 @@ export default function EventsPage() {
                           <CardDescription>{event.summary}</CardDescription>
                         </CardHeader>
 
-                        <CardContent className="space-y-2 text-xs font-mono text-ink-muted">
+                        <CardContent className="space-y-2 text-xs font-sans text-slate-400">
                           <div className="flex items-center gap-2">
-                            <Calendar className="w-4 h-4 text-ink-muted shrink-0" />
+                            <Calendar className="w-4 h-4 text-slate-400 shrink-0" />
                             <span>
                               {formatEventDateTimeRange(
                                 event.startAt,
@@ -252,7 +265,7 @@ export default function EventsPage() {
                             </span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <MapPin className="w-4 h-4 text-ink-muted shrink-0" />
+                            <MapPin className="w-4 h-4 text-slate-400 shrink-0" />
                             <span className="truncate">{event.venue}</span>
                           </div>
                         </CardContent>

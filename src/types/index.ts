@@ -59,6 +59,7 @@ export interface ProjectContributor {
   teamMemberId?: string;
   contributorName: string;
   role?: string;
+  hasConsent?: boolean;
   displayOrder: number;
 }
 
@@ -67,12 +68,15 @@ export interface ProjectItem {
   title: string;
   slug: string;
   summary: string;
+  problemSolved?: string;
   description: string;
   category: string;
   coverPath?: string;
   techStack: string[];
-  githubUrl?: string;
   demoUrl?: string;
+  githubUrl?: string; // Optional: Never exposed without explicit owner consent & admin approval
+  isRepoPublic?: boolean; // Controlled by admin with owner consent (default: false)
+  hasRepoConsent?: boolean; // Owner explicit consent to share repository
   status: ProjectStatus;
   featured: boolean;
   contributors?: ProjectContributor[];
@@ -80,6 +84,34 @@ export interface ProjectItem {
   updatedAt?: string;
 }
 
+/** Individual photograph in an album */
+export interface GalleryPhoto {
+  id: string;
+  albumId: string;
+  imagePath: string;
+  altText: string;
+  caption?: string;
+  displayOrder: number;
+}
+
+/** Event-wise or activity-wise photo album */
+export interface GalleryAlbum {
+  id: string;
+  title: string;
+  slug: string;
+  description?: string;
+  coverImagePath: string;
+  eventTitle?: string;
+  eventId?: string;
+  eventDate?: string;
+  photoCount: number;
+  photos: GalleryPhoto[];
+  isPublished: boolean;
+  displayOrder: number;
+  createdAt: string;
+}
+
+/** Legacy flat gallery item representation */
 export interface GalleryItem {
   id: string;
   eventId?: string;
@@ -109,9 +141,18 @@ export interface SiteSettings {
   tagline: string;
   description: string;
   university: string;
-  campus: string;
-  contactEmail: string;
+  campus?: string;
+  contactEmail?: string;
   instagramUrl: string;
-  githubUrl?: string;
-  linkedinUrl?: string;
+  linkedinUrl: string;
+}
+
+export interface ContactInquiry {
+  id?: string;
+  name: string;
+  email: string;
+  subject?: string;
+  message: string;
+  status?: "new" | "reviewed" | "resolved";
+  createdAt?: string;
 }

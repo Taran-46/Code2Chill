@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { SmoothScroll } from "@/components/effects/smooth-scroll";
+import { CustomCursor } from "@/components/effects/custom-cursor";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -34,8 +36,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="flex min-h-screen flex-col bg-canvas text-ink antialiased">
+    <html lang="en" className="dark">
+      <body className="flex min-h-screen flex-col bg-canvas text-ink antialiased selection:bg-brand-blue selection:text-white">
+        <SmoothScroll />
+        <CustomCursor />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

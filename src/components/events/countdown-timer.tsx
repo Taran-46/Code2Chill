@@ -37,7 +37,7 @@ export function CountdownTimer({ targetDate, label = "Event Starts In", classNam
   if (!mounted) {
     // SSR fallback to prevent hydration mismatch
     return (
-      <div className="rounded-xl border border-border bg-canvas p-4 text-xs font-mono text-ink-muted">
+      <div className="rounded-xl border border-white/8 bg-[#080E1E] p-4 text-xs font-sans text-slate-400">
         Calculating countdown...
       </div>
     );
@@ -45,36 +45,36 @@ export function CountdownTimer({ targetDate, label = "Event Starts In", classNam
 
   if (countdown.isComplete) {
     return (
-      <div className="rounded-xl border border-border bg-canvas p-4 flex items-center gap-2 text-xs font-mono text-ink-muted">
-        <Clock className="w-4 h-4 text-brand-lime-dark" />
+      <div className="rounded-xl border border-white/8 bg-[#080E1E] p-4 flex items-center gap-2 text-xs font-sans text-slate-400">
+        <Clock className="w-4 h-4 text-brand-cyan" />
         <span>Event has begun or concluded</span>
       </div>
     );
   }
 
   return (
-    <div className={`rounded-xl border border-border bg-canvas p-5 space-y-3 ${className || ""}`}>
-      <div className="flex items-center gap-2 text-xs font-mono text-ink-muted uppercase tracking-wider">
-        <Clock className="w-3.5 h-3.5 text-brand-lime-dark" />
+    <div className={`rounded-xl border border-white/10 bg-[#080E1E] p-5 space-y-3 shadow-card ${className || ""}`}>
+      <div className="flex items-center gap-2 text-xs font-sans font-semibold text-brand-cyan uppercase tracking-wider">
+        <Clock className="w-3.5 h-3.5 text-brand-cyan" />
         <span>{label}</span>
       </div>
 
       <div className="grid grid-cols-4 gap-2 text-center">
-        <div className="rounded-lg bg-surface border border-border p-2">
-          <div className="text-xl font-display font-extrabold text-ink">{countdown.days}</div>
-          <div className="text-[10px] font-mono uppercase text-ink-muted">Days</div>
+        <div className="rounded-lg bg-white/[0.04] border border-white/8 p-2">
+          <div className="text-xl font-display font-extrabold text-white">{countdown.days}</div>
+          <div className="text-[11px] font-sans font-medium uppercase text-slate-400">Days</div>
         </div>
-        <div className="rounded-lg bg-surface border border-border p-2">
-          <div className="text-xl font-display font-extrabold text-ink">{countdown.hours}</div>
-          <div className="text-[10px] font-mono uppercase text-ink-muted">Hours</div>
+        <div className="rounded-lg bg-white/[0.04] border border-white/8 p-2">
+          <div className="text-xl font-display font-extrabold text-white">{countdown.hours}</div>
+          <div className="text-[11px] font-sans font-medium uppercase text-slate-400">Hours</div>
         </div>
-        <div className="rounded-lg bg-surface border border-border p-2">
-          <div className="text-xl font-display font-extrabold text-ink">{countdown.minutes}</div>
-          <div className="text-[10px] font-mono uppercase text-ink-muted">Mins</div>
+        <div className="rounded-lg bg-white/[0.04] border border-white/8 p-2">
+          <div className="text-xl font-display font-extrabold text-white">{countdown.minutes}</div>
+          <div className="text-[11px] font-sans font-medium uppercase text-slate-400">Mins</div>
         </div>
-        <div className="rounded-lg bg-surface border border-border p-2">
-          <div className="text-xl font-display font-extrabold text-brand-lime-dark">{countdown.seconds}</div>
-          <div className="text-[10px] font-mono uppercase text-ink-muted">Secs</div>
+        <div className="rounded-lg bg-white/[0.04] border border-white/8 p-2">
+          <div className="text-xl font-display font-extrabold text-brand-cyan">{countdown.seconds}</div>
+          <div className="text-[11px] font-sans font-medium uppercase text-slate-400">Secs</div>
         </div>
       </div>
     </div>

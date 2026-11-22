@@ -2,10 +2,11 @@ import { mockSiteSettings } from "./site-settings";
 import { mockTeamMembers } from "./team";
 import { mockEvents } from "./events";
 import { mockProjects } from "./projects";
-import { mockGallery } from "./gallery";
+import { mockGallery, mockGalleryAlbums } from "./gallery";
 import { mockAnnouncements } from "./announcements";
 import {
   EventItem,
+  GalleryAlbum,
   GalleryItem,
   ProjectItem,
   SiteSettings,
@@ -45,6 +46,16 @@ export function getMockProjectBySlug(slug: string): ProjectItem | undefined {
 
 export function getMockGallery(): GalleryItem[] {
   return mockGallery.filter((g) => g.isPublished).sort((a, b) => a.displayOrder - b.displayOrder);
+}
+
+export function getMockGalleryAlbums(): GalleryAlbum[] {
+  return mockGalleryAlbums
+    .filter((a) => a.isPublished)
+    .sort((a, b) => a.displayOrder - b.displayOrder);
+}
+
+export function getMockGalleryAlbumBySlug(slug: string): GalleryAlbum | undefined {
+  return mockGalleryAlbums.find((a) => a.slug === slug && a.isPublished);
 }
 
 export function getMockActiveAnnouncements(referenceNow: Date = new Date()): AnnouncementItem[] {

@@ -2,80 +2,68 @@
 
 Priority labels: P0 = required for initial release; P1 = valuable initial/near-term feature; P2 = later enhancement.
 
-## Global layout (P0)
-- Responsive header with logo, navigation and clear active state.
-- Mobile navigation with keyboard support.
-- Footer with verified university/club identity, social links and navigation.
-- Consistent typography, buttons, form controls and spacing.
-- Useful page titles, metadata, favicon and social sharing metadata.
+## Global layout & Typography (P0)
+- Clean, natural typography: modern sans-serif (Inter) across all normal headings, event details, dates, times, venues, cards, and badges. Monospace is strictly reserved for genuine code snippets.
+- Responsive header with official Code2Chill logo, clean navigation, active states, and announcement banner.
+- Responsive footer with verified Chitkara University affiliation, official Instagram link, and clean copyright. No placeholder emails or fake office addresses.
+- Dark theme styling with deep void backdrop (`#030712`), luminous blue borders (`#080E1E`), and electric cyan highlights.
 
 ## Home (P0)
-- Hero: approved club statement, logo, primary CTA and secondary CTA.
-- About: accurate summary of Code2Chill.
-- Activity areas: only club-confirmed activities (e.g. workshops, coding sessions, hackathons, tech talks, project collaboration, peer learning).
-- Featured upcoming event, sourced from published database content.
-- Selected projects, sourced from published projects.
-- Selected gallery images.
-- Join/contact CTA.
-- No fabricated statistics, testimonials, awards or sponsors.
+- Hero: student-driven positioning ("Learn. Build. Connect."), primary CTA, and secondary CTA.
+- Philosophy & About: realistic student community narrative.
+- Club activities: 4 core activity areas (Workshops, Hackathons, Systems & Architecture, Open Source).
+- Featured upcoming event: dynamically selected from published events.
+- Selected student projects: respects repository privacy.
+- Student leadership preview: links to team directory.
+- Accessible FAQ accordion & Contact CTA.
 
 ## Team (P0)
-- Group members by approved categories such as faculty coordinator, leadership and core team.
-- Each profile may contain name, designation, photo, short bio and public LinkedIn URL.
-- Optional email only where explicitly approved for public display.
-- Support display order and active/hidden status.
-- Validate external URLs and use safe external-link behaviour.
-- Do not publish personal data without consent.
+- Group student members by category: Leadership & Core, Track Leads & Mentors.
+- Name, designation, student focus/track, and university affiliation.
+- No unverified social links or placeholder emails.
 
 ## Events (P0)
-- Events listing with Upcoming and Past views/tabs.
-- Event cards: title, poster, date/time, venue, category, short description and registration state.
-- Event detail route using a unique slug.
-- Detail content: full description, schedule, rules, venue, FAQ, organizer contact and registration CTA where supplied.
-- Past event archive remains available.
-- Event status values should distinguish draft, published and cancelled. Temporal state (upcoming/ongoing/completed) is derived from dates, not manually guessed.
-- Registration modes: none, external URL, internal (optional).
-- Registration states: not required, upcoming, open, closed, full (only show full if capacity is actually managed).
-- Store dates consistently with timezone information. Display in the event's intended local timezone (normally Asia/Kolkata, after confirmation).
-- Countdown is calculated from the event start time in the browser/UI; server data remains the source of truth.
-- Do not move/delete records when events pass. Past/upcoming classification is derived from dates and status.
+- Events listing with Upcoming and Past archive.
+- Category filters (Workshops, Hackathons, Technical Talks, Community).
+- Event detail route (`/events/[slug]`): clean sans-serif event metadata (Date, Time, Venue, Capacity), full schedule breakdown, rules, and registration button.
+- Live countdown timer with Asia/Kolkata timezone awareness.
 
-## Projects (P0)
-- Projects listing and detail route.
-- Fields: title, slug, summary, full description, cover, gallery/screenshots, category, tech stack, contributors, GitHub URL, demo URL, publication status.
-- Only published projects appear publicly.
-- Do not claim a project is deployed or open source unless the relevant link is verified.
+## Projects — Privacy & Ownership (P0)
+- Showcase student software, utilities, and applications.
+- Fields: title, slug, summary, problem statement (`problemSolved`), full description, cover image, category, tech stack, contributors, optional demo URL, optional GitHub URL, publication status, repository consent status.
+- Strict Privacy Controls:
+  - Repositories are private by default.
+  - GitHub repository links are optional and only rendered if explicitly consented to by the student owner (`hasRepoConsent: true`) and published by an administrator (`isRepoPublic: true`).
+  - Projects can be showcased completely with screenshots, problem solved, and live demos without forcing students to expose source code.
+  - Visual lock badge indicating source code privacy when repository is not published.
 
-## Gallery (P1)
-- Responsive image gallery, optional event filter and lightbox.
-- Images may be associated with an event.
-- Alt text/captions and display order.
-- Only approved photographs are published.
+## Gallery — Event-wise Photo Albums (P0)
+- Replaced flat photo stream with dedicated event-based albums/collections.
+- Album cards: cover photograph, event/album title, description/caption, event date, photo count badge (e.g. "4 Photos").
+- Interactive Album Lightbox Modal:
+  - Opens photographs belonging strictly to the selected album.
+  - Previous and Next buttons with cyclic looping.
+  - Counter indicator: "Photo X of Y".
+  - Caption and alt text display.
+  - Keyboard navigation (ArrowLeft, ArrowRight, Escape).
+  - Mobile touch/swipe navigation (`onTouchStart` / `onTouchEnd`).
+  - Clear close button and backdrop click dismissal.
+  - Body scroll lock when open.
 
-## Announcements (P0)
-- Admin-created announcements with title, body, publish state, creation/publish time and optional expiry.
-- Homepage announcement strip/section only when an active published announcement exists.
-- Expired/unpublished announcements are hidden from public visitors.
-- Important announcements should link to a relevant event or page.
+## Contact & Inquiries (P0)
+- Primary channel: Official Instagram (`@code2chill.osl`) with direct verified link.
+- University affiliation: Chitkara University (Punjab, India).
+- Inquiries submission form:
+  - Clear explanation: submissions are queued securely for authorized student coordinators to review.
+  - Does NOT falsely claim an email was sent.
+  - Clean sans-serif form inputs with validation and instant confirmation message.
 
-## Join / Contact (P0)
-- Explain how students can connect or apply.
-- Use approved official contact details and social URLs.
-- If recruitment is closed, say so rather than presenting a non-functional form.
-- Membership form is optional and requires an approved data-handling plan.
-
-## Admin (P0)
-- Login route and protected dashboard.
-- Roles: super_admin and editor initially. More granular roles may be introduced later.
-- Manage events, team, projects, gallery and announcements.
-- Upload and replace media.
-- Preview draft content where feasible.
-- Confirm destructive actions.
-- Show validation and operation errors.
-- Admin user management restricted to super_admin.
-- Audit significant admin actions if feasible.
-
-## Registration (P0 external; P2 internal)
-- External: store a validated registration URL per event and open it clearly.
-- Internal later: participant form, duplicate prevention, capacity, deadline, consent/privacy notice, export and confirmation workflow.
-- Never collect more participant data than required.
+## Admin Dashboard (Phase 4 — P0)
+- Supabase Auth integration with role checks (`super_admin`, `editor`).
+- Management interfaces for:
+  - Events (CRUD, registration link, draft/published status)
+  - Team (members, roles, display order)
+  - Projects (CRUD, problem statement, repository privacy toggle, contributor consent check)
+  - Gallery Albums & Photographs (album creation, photo uploads to Supabase Storage, cover photo selection, reordering, deletion)
+  - Announcements
+  - Inquiries review

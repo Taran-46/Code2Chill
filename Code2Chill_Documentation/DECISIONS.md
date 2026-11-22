@@ -4,30 +4,31 @@
 | Topic | Decision |
 |---|---|
 | Club name | Code2Chill |
-| Existing logo | Yes; use as the starting brand asset |
-| Visual theme | Light |
-| Website access | Public |
-| Administrators | Multiple authorized administrators |
-| Required extra features | Projects showcase, event registration, announcements |
-| University details | University name is available; exact public wording to confirm |
-| Social | Club Instagram available; member LinkedIn links may be collected |
+| University affiliation | Chitkara University (Punjab, India) — student community; no permanent physical room or office |
+| Official contact | Official Instagram: `https://www.instagram.com/code2chill.osl/`. No official club email currently exists |
+| Official GitHub | None currently exists; no fake org links |
+| Brand logo | Official circular Code2Chill logo integrated across Header, Footer, Hero, and Favicon |
+| Visual theme | Dark Void & Luminous Blue (#030712 / #080E1E / #2563EB / #38BDF8) with subtle glassmorphism |
+| Typography standard | Clean sans-serif (Inter) across all normal headings, descriptions, dates, times, venue, and badges. Monospace prohibited except for actual code blocks |
+| Project privacy model | Repositories private by default (`isRepoPublic: false`, `hasRepoConsent: false`). Projects showcased via problem statement, tech stack, screenshots, and live demo without forcing public source code |
+| Gallery structure | Event-wise photo albums/collections (cover, title, description, date, photo count) with full-screen modal viewer (Prev/Next, counter, swipe, keyboard nav) |
+| Inquiries mechanism | Inquiry form queues submissions for authorized admin review; does not claim email was sent |
+| Website access | Public read access; multi-admin role-protected dashboard |
 
 ## Recommended decisions for approval / implementation
 | Topic | Recommendation |
 |---|---|
-| Framework | Next.js App Router + TypeScript |
+| Framework | Next.js 14 App Router + TypeScript |
 | Styling | Tailwind CSS + shadcn/ui |
-| Animation | Motion, restrained |
-| Backend | Supabase |
-| Database | PostgreSQL |
-| Auth | Supabase Auth |
-| Media | Supabase Storage |
+| Animation | Motion + CSS smooth transitions |
+| Backend | Supabase (PostgreSQL, Supabase Auth, Supabase Storage, Row Level Security) |
+| Database | PostgreSQL via Supabase |
+| Auth | Supabase Auth (super_admin and editor roles) |
+| Media | Supabase Storage (event banners, project covers, album photos) |
 | Hosting | Vercel |
 | Version control | GitHub |
-| Admin roles | super_admin and editor initially |
-| Registration | External URL initially; internal registration later if needed |
-| Public routes | Home, Team, Events, Projects, Gallery, Join/Contact |
-| Event status | Draft/published/cancelled plus date-derived temporal status |
+| Registration | External URL initially; internal participant store later |
+| Public routes | Home, Team, Events, Events/[slug], Projects, Projects/[slug], Gallery, Contact |
 
 ## Decision change process
 When changing a decision:
@@ -36,5 +37,3 @@ When changing a decision:
 3. Obtain project-owner approval for material changes.
 4. Update this file and relevant docs.
 5. Record migration/rollback implications.
-
-Do not silently replace the agreed stack or visual direction.
