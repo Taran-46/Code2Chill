@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { SmoothScroll } from "@/components/effects/smooth-scroll";
 import { CustomCursor } from "@/components/effects/custom-cursor";
+import LoadingScreen from "@/components/loading/LoadingScreen";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -38,6 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className="flex min-h-screen flex-col bg-canvas text-ink antialiased selection:bg-brand-blue selection:text-white">
+        <LoadingScreen />
         <SmoothScroll />
         <CustomCursor />
         <Header />
