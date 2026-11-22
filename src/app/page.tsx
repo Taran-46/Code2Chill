@@ -1,18 +1,15 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import {
   ArrowRight,
-  Code2,
   Calendar,
   MapPin,
   ExternalLink,
   Users,
-  Sparkles,
   ArrowUpRight,
   MessageSquare,
-  Terminal,
   Linkedin,
+  Instagram,
 } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
@@ -40,34 +37,33 @@ const HOMEPAGE_FAQS: AccordionItemData[] = [
     id: "faq-1",
     question: "Who can participate in Code2Chill workshops?",
     answer:
-      "All students enrolled at Chitkara University across any year, branch, or engineering stream are welcome. You do not need to be a Computer Science major to attend our sessions.",
+      "Code2Chill is an active student technical community at Chitkara University. Session details, eligibility, or prerequisites (if any) are clearly communicated on each individual event announcement.",
   },
   {
     id: "faq-2",
     question: "Do I need prior programming experience to attend?",
     answer:
-      "Not at all. We host foundational jumpstarts (such as Git basics, terminal navigation, and web fundamentals) specifically tailored for newcomers, alongside advanced masterclasses on systems architecture and cloud deployments.",
+      "Sessions cater to varying skill levels depending on the topic. Specific technical requirements or preparation instructions are announced prior to each workshop.",
   },
   {
     id: "faq-3",
-    question: "Are Code2Chill sessions and events free?",
+    question: "How can I stay updated on club activities and upcoming sessions?",
     answer:
-      "Yes. All official club workshops, hackathons, guest talks, and peer study circles are free of charge for university students.",
+      "Follow our confirmed official Instagram (@code2chill.osl) and LinkedIn (@code2chill) accounts, where upcoming sessions, hackathons, and announcements are published first.",
   },
   {
     id: "faq-4",
-    question: "How can I collaborate on a project or connect with the student leads?",
+    question: "How can I connect with the student team or collaborate?",
     answer:
-      "You can reach out through our Contact page, connect with us on Instagram or LinkedIn, or attend one of our upcoming club sessions on campus. Our student leads and mentors are always glad to connect.",
+      "You can reach out through our Contact page, connect with our student coordinators on LinkedIn, or send a direct inquiry through our contact form.",
   },
 ];
 
 export default function HomePage() {
   const settings = getMockSiteSettings();
   const events = getMockEvents();
-  const team = getMockTeam();
 
-  // Find the top featured upcoming event
+  // Find the top featured upcoming event (if any published)
   const upcomingEvents = events.filter(
     (e) => getEventTemporalStatus(e.startAt, e.endAt) !== "past"
   );
@@ -75,11 +71,11 @@ export default function HomePage() {
 
   return (
     <div className="pb-20 relative overflow-hidden">
-      {/* Background Coordinate Grid & Glow (NODDAL inspired) */}
+      {/* Background Coordinate Grid & Glow */}
       <BackgroundGrid />
 
       <div className="space-y-14 sm:space-y-20 relative z-10">
-        {/* 1. HERO SECTION (FOCUSED BRAND IDENTITY WITH OFFICIAL LOGO) */}
+        {/* 1. HERO SECTION */}
         <section className="relative pt-2 sm:pt-4">
           <Container>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -111,7 +107,7 @@ export default function HomePage() {
                   <div className="flex flex-wrap items-center gap-3 pt-2">
                     <Link href="/events">
                       <Button variant="primary" size="lg">
-                        <span>Explore Upcoming Events</span>
+                        <span>Explore Events</span>
                         <ArrowRight className="w-4 h-4" />
                       </Button>
                     </Link>
@@ -124,7 +120,7 @@ export default function HomePage() {
                   </div>
                 </FadeUp>
 
-                {/* Sub-meta attributes */}
+                {/* Sub-meta attributes (Neutral, Confirmed) */}
                 <FadeUp delay={0.5}>
                   <div className="pt-6 border-t border-white/8 flex flex-wrap items-center gap-6 text-xs text-slate-400">
                     <span className="flex items-center gap-1.5 font-medium text-slate-300">
@@ -133,17 +129,17 @@ export default function HomePage() {
                     </span>
                     <span className="flex items-center gap-1.5 font-medium text-slate-300">
                       <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan" />
-                      Open to all years & branches
+                      Chitkara University
                     </span>
                     <span className="flex items-center gap-1.5 font-medium text-slate-300">
                       <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan" />
-                      Practical code & sprints
+                      Practical Learning & Building
                     </span>
                   </div>
                 </FadeUp>
               </div>
 
-              {/* Right Column: 3D Tilt Interactive Terminal (NODDAL & Ksen Panchenko inspired) */}
+              {/* Right Column: 3D Tilt Interactive Terminal */}
               <FadeUp delay={0.3} distance={40} className="lg:col-span-5">
                 <TiltCard maxTilt={8}>
                   <InteractiveTerminal featuredEvent={featuredEvent} />
@@ -153,49 +149,23 @@ export default function HomePage() {
           </Container>
         </section>
 
-        {/* Live Running Ticker (Continuous Ticker Bar) */}
+        {/* Live Running Ticker */}
         <InfiniteMarquee />
 
-        {/* 2. ABOUT CODE2CHILL SECTION */}
+        {/* 2. ABOUT & CORE ACTIVITIES SECTION */}
         <section className="py-16 border-y border-white/8 bg-[#050A17] relative overflow-hidden">
           <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-              {/* Left column slides in from the left */}
-              <ScrollReveal direction="left" delay={0} className="lg:col-span-5 space-y-3">
-                <span className="section-label">01 // Our Philosophy</span>
-                <h2 className="text-2xl sm:text-3xl font-display font-bold text-white">
-                  Built by students, for students.
+            <div className="space-y-12">
+              <ScrollReveal direction="left" distance={28} className="space-y-3">
+                <span className="section-label">02 // What We Do</span>
+                <h2 className="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight">
+                  Student Technical Activities
                 </h2>
-              </ScrollReveal>
-
-              {/* Right column slides in from the right, slightly delayed */}
-              <ScrollReveal direction="right" delay={0.12} className="lg:col-span-7 space-y-4 text-sm sm:text-base text-slate-300 leading-relaxed">
-                <p>
-                  Code2Chill is an open student community where undergraduates bridge the gap between classroom textbooks and production software engineering.
-                </p>
-                <p>
-                  We believe the fastest way to grow as a developer is by writing real code, collaborating on open-source repositories, and learning alongside peers who share the same curiosity.
-                </p>
-              </ScrollReveal>
-            </div>
-          </Container>
-        </section>
-
-        {/* 3. WHAT WE DO (COMPACT ACTIVITIES WITH MOUSE-SPOTLIGHT CARDS) */}
-        <section>
-          <Container>
-            <div className="space-y-8">
-              <ScrollReveal direction="up" distance={28} className="max-w-2xl space-y-2">
-                <span className="section-label">02 // Club Activities</span>
-                <h2 className="text-2xl sm:text-3xl font-display font-bold text-white">
-                  What we do together
-                </h2>
-                <p className="text-sm text-slate-400">
-                  Regular sessions designed to be practical, interactive, and completely beginner-friendly.
+                <p className="editorial-lead text-base sm:text-lg text-slate-300 max-w-2xl">
+                  Code2Chill organizes practical technical initiatives focused on modern software engineering, real problem-solving, and peer collaboration.
                 </p>
               </ScrollReveal>
 
-              {/* 4 Interactive Spotlight Cards — staggered from bottom */}
               <StaggerChildren
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
                 direction="up"
@@ -209,7 +179,7 @@ export default function HomePage() {
                     <span className="text-xs font-sans font-semibold tracking-wide text-brand-cyan">01 //</span>
                     <h3 className="font-display font-bold text-lg text-white">Hands-on Workshops</h3>
                     <p className="text-xs text-slate-400 leading-relaxed">
-                      Interactive sessions on modern web engineering, database architecture, and developer tooling with live code.
+                      Practical sessions covering modern engineering tools, practical coding, and software development workflows.
                     </p>
                   </SpotlightCard>
                 </StaggerItem>
@@ -219,7 +189,7 @@ export default function HomePage() {
                     <span className="text-xs font-sans font-semibold tracking-wide text-brand-cyan">02 //</span>
                     <h3 className="font-display font-bold text-lg text-white">Hackathons & Sprints</h3>
                     <p className="text-xs text-slate-400 leading-relaxed">
-                      Hackathons and time-boxed project sprints where students turn ideas into working applications.
+                      Collaborative problem-solving events where students come together to prototype and build software solutions.
                     </p>
                   </SpotlightCard>
                 </StaggerItem>
@@ -227,9 +197,9 @@ export default function HomePage() {
                 <StaggerItem>
                   <SpotlightCard className="space-y-3 hover:-translate-y-1 h-full">
                     <span className="text-xs font-sans font-semibold tracking-wide text-brand-cyan">03 //</span>
-                    <h3 className="font-display font-bold text-lg text-white">Systems & Tech Talks</h3>
+                    <h3 className="font-display font-bold text-lg text-white">Technical Talks</h3>
                     <p className="text-xs text-slate-400 leading-relaxed">
-                      Insightful discussions exploring systems design, containerization, cloud infrastructure, and open source.
+                      Discussions and presentations on modern developer tools, software engineering, and emerging technologies.
                     </p>
                   </SpotlightCard>
                 </StaggerItem>
@@ -237,9 +207,9 @@ export default function HomePage() {
                 <StaggerItem>
                   <SpotlightCard className="space-y-3 hover:-translate-y-1 h-full">
                     <span className="text-xs font-sans font-semibold tracking-wide text-brand-cyan">04 //</span>
-                    <h3 className="font-display font-bold text-lg text-white">Peer Learning Circles</h3>
+                    <h3 className="font-display font-bold text-lg text-white">Community Collaboration</h3>
                     <p className="text-xs text-slate-400 leading-relaxed">
-                      Mentoring circles where experienced students help first-years with Git, terminal basics, and code reviews.
+                      Connecting student developers across campus to share ideas, collaborate on projects, and build together.
                     </p>
                   </SpotlightCard>
                 </StaggerItem>
@@ -248,28 +218,28 @@ export default function HomePage() {
           </Container>
         </section>
 
-        {/* 4. FEATURED UPCOMING EVENT (SHOWS ONLY ONE FEATURED EVENT) */}
-        {featuredEvent && (
-          <section className="py-16 border-y border-white/8 bg-[#050A17] relative">
-            <Container>
-              <div className="space-y-6">
-                <ScrollReveal direction="left" distance={32} className="flex items-center justify-between">
-                  <div>
-                    <span className="section-label">03 // Next on Schedule</span>
-                    <h2 className="text-2xl sm:text-3xl font-display font-bold text-white mt-1">
-                      Featured Workshop
-                    </h2>
-                  </div>
-                  <Link
-                    href="/events"
-                    className="text-xs sm:text-sm font-semibold text-brand-cyan hover:underline inline-flex items-center gap-1 font-sans"
-                  >
-                    <span>All Events</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </ScrollReveal>
+        {/* 3. FEATURED UPCOMING EVENT / EMPTY STATE */}
+        <section className="py-16 border-y border-white/8 bg-[#050A17] relative">
+          <Container>
+            <div className="space-y-6">
+              <ScrollReveal direction="left" distance={32} className="flex items-center justify-between">
+                <div>
+                  <span className="section-label">03 // Next on Schedule</span>
+                  <h2 className="text-2xl sm:text-3xl font-display font-bold text-white mt-1">
+                    Upcoming Sessions
+                  </h2>
+                </div>
+                <Link
+                  href="/events"
+                  className="text-xs sm:text-sm font-semibold text-brand-cyan hover:underline inline-flex items-center gap-1 font-sans"
+                >
+                  <span>Events Archive</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </ScrollReveal>
 
-                {/* Single Featured Event Spotlight Banner — slides up */}
+              {featuredEvent ? (
+                /* Verified Featured Event Card */
                 <ScrollReveal direction="up" distance={28} delay={0.1}>
                   <SpotlightCard className="p-6 sm:p-8 space-y-5">
                     <div className="flex flex-wrap items-center justify-between gap-3">
@@ -310,10 +280,12 @@ export default function HomePage() {
                           )}
                         </span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-brand-cyan shrink-0" />
-                        <span className="truncate">{featuredEvent.venue}</span>
-                      </div>
+                      {featuredEvent.venue && (
+                        <div className="flex items-center gap-2">
+                          <MapPin className="w-4 h-4 text-brand-cyan shrink-0" />
+                          <span className="truncate">{featuredEvent.venue}</span>
+                        </div>
+                      )}
                     </div>
 
                     <div className="pt-2 flex flex-wrap items-center justify-between gap-4">
@@ -332,19 +304,58 @@ export default function HomePage() {
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-1.5 text-xs font-sans font-semibold text-brand-cyan hover:underline"
                           >
-                            <span>External RSVP Form</span>
+                            <span>RSVP Form</span>
                             <ExternalLink className="w-3.5 h-3.5" />
                           </a>
                         )}
                     </div>
                   </SpotlightCard>
                 </ScrollReveal>
-              </div>
-            </Container>
-          </section>
-        )}
+              ) : (
+                /* Polished Empty State for Events */
+                <ScrollReveal direction="up" distance={28} delay={0.1}>
+                  <div className="rounded-2xl border border-white/8 bg-[#080E1E] p-8 sm:p-12 text-center space-y-4 shadow-card">
+                    <div className="w-12 h-12 rounded-full bg-brand-cyan/10 border border-brand-cyan/25 flex items-center justify-center mx-auto text-brand-cyan">
+                      <Calendar className="w-6 h-6" />
+                    </div>
+                    <div className="space-y-1.5 max-w-md mx-auto">
+                      <h3 className="font-display font-bold text-lg text-white">
+                        No Sessions Currently Scheduled
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+                        New workshops, hackathons, and technical sessions will be announced here once scheduled. Follow our official Instagram and LinkedIn for immediate announcements.
+                      </p>
+                    </div>
+                    <div className="pt-2 flex flex-wrap justify-center gap-3">
+                      <a
+                        href={settings.instagramUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-2 text-xs font-semibold text-white hover:bg-white/[0.08] hover:border-brand-cyan/40 transition-colors font-sans"
+                      >
+                        <Instagram className="w-3.5 h-3.5 text-brand-cyan" />
+                        <span>Instagram Updates</span>
+                      </a>
+                      {settings.linkedinUrl && (
+                        <a
+                          href={settings.linkedinUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-2 text-xs font-semibold text-white hover:bg-white/[0.08] hover:border-brand-cyan/40 transition-colors font-sans"
+                        >
+                          <Linkedin className="w-3.5 h-3.5 text-brand-cyan" />
+                          <span>LinkedIn Updates</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </ScrollReveal>
+              )}
+            </div>
+          </Container>
+        </section>
 
-        {/* 4. SINGLE STUDENT TEAM & COMMUNITY PREVIEW */}
+        {/* 4. STUDENT TEAM & COMMUNITY PREVIEW */}
         <section className="py-16 border-y border-white/8 bg-[#050A17] relative overflow-hidden">
           <Container>
             <ScrollReveal direction="up" distance={30}>
@@ -352,10 +363,10 @@ export default function HomePage() {
                 <div className="space-y-2 max-w-xl">
                   <span className="section-label">04 // Community & Leadership</span>
                   <h2 className="text-2xl font-display font-bold text-white">
-                    Run by student developers, open to everyone.
+                    Run by student developers at Chitkara University.
                   </h2>
-                  <p className="text-sm text-slate-300 leading-relaxed">
-                    Meet the student coordinators and track leads who volunteer their time to organize workshops, curate peer code reviews, and build our technical community at Chitkara University.
+                  <p className="text-sm text-slate-300 leading-relaxed font-sans">
+                    Meet the student coordinators and core team leads who volunteer their time to organize workshops, hackathons, and collaborative technical initiatives.
                   </p>
                 </div>
                 <Link href="/team" className="shrink-0">
@@ -369,7 +380,7 @@ export default function HomePage() {
           </Container>
         </section>
 
-        {/* 5. FREQUENTLY ASKED QUESTIONS (ACCORDION) */}
+        {/* 5. FREQUENTLY ASKED QUESTIONS */}
         <section>
           <Container>
             <div className="max-w-3xl mx-auto space-y-6">
@@ -378,7 +389,7 @@ export default function HomePage() {
                 <h2 className="text-2xl sm:text-3xl font-display font-bold text-white">
                   Frequently Asked Questions
                 </h2>
-                <p className="text-sm text-slate-400">
+                <p className="text-sm text-slate-400 font-sans">
                   Everything you need to know about participating in Code2Chill.
                 </p>
               </ScrollReveal>
@@ -390,7 +401,7 @@ export default function HomePage() {
           </Container>
         </section>
 
-        {/* 8. FINAL CONTACT CTA */}
+        {/* 6. FINAL CONTACT CTA */}
         <section>
           <Container>
             <ScrollReveal direction="up" distance={32}>
@@ -400,8 +411,8 @@ export default function HomePage() {
                   <h2 className="text-2xl sm:text-3xl font-display font-bold text-white">
                     Have a question or want to collaborate?
                   </h2>
-                  <p className="text-sm text-slate-300 leading-relaxed">
-                    Reach out to our student coordinators for workshop details, project collaboration, or general technical inquiries.
+                  <p className="text-sm text-slate-300 leading-relaxed font-sans">
+                    Reach out to our student coordinators for workshop inquiries, project collaboration, or general technical discussions.
                   </p>
                 </div>
                 <div className="flex flex-wrap items-center gap-3 shrink-0 relative z-10">
@@ -417,8 +428,9 @@ export default function HomePage() {
                     rel="noopener noreferrer"
                   >
                     <Button variant="secondary" className="bg-white/[0.08] text-white border-white/12 hover:bg-white/[0.14]">
+                      <Instagram className="w-3.5 h-3.5 mr-1" />
                       <span>Instagram</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
+                      <ArrowUpRight className="w-3.5 h-3.5 ml-1" />
                     </Button>
                   </a>
                   {settings.linkedinUrl && (
@@ -428,8 +440,9 @@ export default function HomePage() {
                       rel="noopener noreferrer"
                     >
                       <Button variant="secondary" className="bg-white/[0.08] text-white border-white/12 hover:bg-white/[0.14]">
+                        <Linkedin className="w-3.5 h-3.5 mr-1" />
                         <span>LinkedIn</span>
-                        <ArrowUpRight className="w-3.5 h-3.5" />
+                        <ArrowUpRight className="w-3.5 h-3.5 ml-1" />
                       </Button>
                     </a>
                   )}

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Terminal, Copy, Check, Sparkles } from "lucide-react";
+import { Terminal, Copy, Check } from "lucide-react";
 import { EventItem } from "@/types";
 
 interface InteractiveTerminalProps {
@@ -90,13 +90,13 @@ export function InteractiveTerminal({ featuredEvent }: InteractiveTerminalProps)
           <div className="space-y-1 text-slate-300">
             <p><span className="text-brand-cyan font-semibold">export const</span> code2chill = &#123;</p>
             <p className="pl-4">campus: <span className="text-sky-300">&quot;Chitkara University&quot;</span>,</p>
-            <p className="pl-4">lead: <span className="text-sky-300">&quot;100% Student-Driven&quot;</span>,</p>
+            <p className="pl-4">lead: <span className="text-sky-300">&quot;Student-Driven&quot;</span>,</p>
             <p className="pl-4">activities: [</p>
-            <p className="pl-8 text-white">&quot;Hands-on Workshops&quot;,</p>
+            <p className="pl-8 text-white">&quot;Workshops&quot;,</p>
             <p className="pl-8 text-white">&quot;Hackathons&quot;,</p>
-            <p className="pl-8 text-white">&quot;Open Source Sprints&quot;</p>
+            <p className="pl-8 text-white">&quot;Technical Sessions&quot;</p>
             <p className="pl-4">],</p>
-            <p className="pl-4">status: <span className="text-emerald-400">&quot;Active & Open to All&quot;</span>,</p>
+            <p className="pl-4">status: <span className="text-emerald-400">&quot;Active Community&quot;</span>,</p>
             <p>&#125;;</p>
           </div>
         )}
@@ -124,8 +124,8 @@ export function InteractiveTerminal({ featuredEvent }: InteractiveTerminalProps)
         )}
       </div>
 
-      {/* Live Activity Chip */}
-      {featuredEvent && (
+      {/* Activity Status Chip */}
+      {featuredEvent ? (
         <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3.5 flex items-center justify-between gap-3 relative z-10 hover:border-brand-cyan/30 transition-colors">
           <div className="space-y-0.5">
             <span className="text-[11px] font-sans font-semibold text-brand-cyan uppercase tracking-wider block">
@@ -140,6 +140,23 @@ export function InteractiveTerminal({ featuredEvent }: InteractiveTerminalProps)
             className="text-xs font-sans font-semibold text-brand-cyan hover:underline shrink-0"
           >
             View →
+          </Link>
+        </div>
+      ) : (
+        <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3.5 flex items-center justify-between gap-3 relative z-10 hover:border-brand-cyan/30 transition-colors">
+          <div className="space-y-0.5">
+            <span className="text-[11px] font-sans font-semibold text-brand-cyan uppercase tracking-wider block">
+              ● Community Sessions
+            </span>
+            <p className="text-xs font-sans font-medium text-slate-300">
+              Stay tuned for upcoming event announcements
+            </p>
+          </div>
+          <Link
+            href="/events"
+            className="text-xs font-sans font-semibold text-brand-cyan hover:underline shrink-0"
+          >
+            Events →
           </Link>
         </div>
       )}

@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS public.team_members (
   name TEXT NOT NULL,
   slug TEXT UNIQUE NOT NULL,
   designation TEXT NOT NULL,
-  group_name TEXT NOT NULL CHECK (group_name IN ('Leadership', 'Track Leads', 'Core Team', 'Alumni')),
+  group_name TEXT NOT NULL CHECK (group_name IN ('Leadership', 'Core Leads', 'Track Leads', 'Core Team', 'Alumni')),
   bio TEXT,
   photo_path TEXT,
   linkedin_url TEXT,

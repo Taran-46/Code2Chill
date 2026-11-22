@@ -41,7 +41,7 @@ export default function GalleryPage() {
             </FadeUp>
             <FadeUp delay={0.28}>
               <p className="editorial-lead text-base sm:text-lg text-slate-300">
-                Explore dedicated photo albums from our hands-on workshops, hackathons, open source sprints, and community meetups at Chitkara University.
+                Explore dedicated photo albums from our workshops, hackathons, and community meetups at Chitkara University.
               </p>
             </FadeUp>
           </div>

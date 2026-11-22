@@ -6,7 +6,7 @@ export interface AdminMembership {
   createdAt: string;
 }
 
-export type TeamGroup = "Club Leadership" | "Technical Leads" | "Core Team";
+export type TeamGroup = "Leadership" | "Core Leads" | "Core Team";
 
 export interface TeamMember {
   id: string;
@@ -17,7 +17,6 @@ export interface TeamMember {
   bio?: string;
   photoPath?: string;
   linkedinUrl?: string;
-  emailPublic?: string;
   displayOrder: number;
   isPublished: boolean;
   createdAt: string;

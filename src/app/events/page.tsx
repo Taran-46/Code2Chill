@@ -201,14 +201,14 @@ export default function EventsPage() {
                     })}
                   </StaggerChildren>
                 ) : (
-                  <div className="rounded-2xl border border-dashed border-border bg-surface p-12 text-center space-y-3">
-                    <Calendar className="w-8 h-8 text-ink-muted mx-auto" />
-                    <h3 className="font-display font-bold text-lg text-ink">
+                  <div className="rounded-2xl border border-dashed border-white/10 bg-[#080E1E] p-12 text-center space-y-3">
+                    <Calendar className="w-8 h-8 text-brand-cyan mx-auto" />
+                    <h3 className="font-display font-bold text-lg text-white">
                       No Upcoming Events Found
                     </h3>
-                    <p className="text-sm text-ink-muted max-w-sm mx-auto">
+                    <p className="text-sm text-slate-300 max-w-sm mx-auto">
                       {selectedCategory === "All"
-                        ? "We are currently planning the next workshops. Stay tuned for announcements!"
+                        ? "New workshops, hackathons, and sessions will appear here once scheduled. Follow our official channels for announcements."
                         : `No upcoming events found in category "${selectedCategory}".`}
                     </p>
                   </div>
@@ -282,13 +282,13 @@ export default function EventsPage() {
                     ))}
                   </div>
                 ) : (
-                  <div className="rounded-2xl border border-dashed border-border bg-surface p-12 text-center space-y-3">
-                    <Calendar className="w-8 h-8 text-ink-muted mx-auto" />
-                    <h3 className="font-display font-bold text-lg text-ink">
-                      No Past Events Found
+                  <div className="rounded-2xl border border-dashed border-white/10 bg-[#080E1E] p-12 text-center space-y-3">
+                    <Calendar className="w-8 h-8 text-slate-400 mx-auto" />
+                    <h3 className="font-display font-bold text-lg text-white">
+                      Event Archive
                     </h3>
-                    <p className="text-sm text-ink-muted max-w-sm mx-auto">
-                      No archived events found matching this filter.
+                    <p className="text-sm text-slate-300 max-w-sm mx-auto">
+                      Past workshops and hackathon sessions will be archived here as events conclude.
                     </p>
                   </div>
                 )}

@@ -34,6 +34,59 @@ function isRateLimited(ip: string): boolean {
   return false;
 }
 
+// Global demo inquiry memory store for local demonstration mode
+interface DemoInquiry {
+  id: string;
+  name: string;
+  email: string;
+  subject?: string | null;
+  message: string;
+  status: "new" | "reviewed" | "resolved";
+  created_at: string;
+}
+
+const memoryInquiries: DemoInquiry[] = [
+  {
+    id: "inq-seed-1",
+    name: "Amanpreet Kaur",
+    email: "amanpreet@chitkara.edu.in",
+    subject: "Upcoming workshop topics",
+    message: "Hi Code2Chill coordinators! I am a 2nd year student. When will registration open for the next web workshop? Looking forward to participating.",
+    status: "new",
+    created_at: new Date(Date.now() - 3600000).toISOString(),
+  },
+  {
+    id: "inq-seed-2",
+    name: "Rohan Verma",
+    email: "rohan.v@chitkara.edu.in",
+    subject: "Collaboration proposal",
+    message: "We have built a small campus utility project and would love to showcase it or collaborate with the technical team.",
+    status: "reviewed",
+    created_at: new Date(Date.now() - 86400000).toISOString(),
+  },
+];
+
+// GET: Fetch all inquiries (Admin-only)
+export async function GET() {
+  if (isSupabaseConfigured()) {
+    const adminClient = createAdminClient();
+    if (adminClient) {
+      const { data, error } = await adminClient
+        .from("contact_inquiries")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (!error && data) {
+        return NextResponse.json({ success: true, inquiries: data });
+      }
+    }
+  }
+
+  // Fallback to local demo in-memory inquiries
+  return NextResponse.json({ success: true, inquiries: memoryInquiries });
+}
+
+// POST: Public submission
 export async function POST(req: NextRequest) {
   try {
     // 1. Client IP tracking for anti-abuse protection
@@ -93,8 +146,17 @@ export async function POST(req: NextRequest) {
         }
       }
     } else {
-      // Development mode log (when Supabase .env.local is not yet filled by user)
-      console.log(`[Development Inquiry Recorded]: From: ${name} (${email}) | Subject: ${subject || "N/A"}`);
+      // Record to in-memory store so it appears in the admin inquiries inbox during demo
+      const newInquiry: DemoInquiry = {
+        id: `inq-local-${Date.now()}`,
+        name,
+        email,
+        subject: subject ?? null,
+        message,
+        status: "new",
+        created_at: new Date().toISOString(),
+      };
+      memoryInquiries.unshift(newInquiry);
     }
 
     return NextResponse.json(
@@ -113,5 +175,33 @@ export async function POST(req: NextRequest) {
       },
       { status: 500 }
     );
+  }
+}
+
+// PATCH: Update status (Admin-only)
+export async function PATCH(req: NextRequest) {
+  try {
+    const { id, status } = await req.json();
+    if (!id || !["new", "reviewed", "resolved"].includes(status)) {
+      return NextResponse.json({ success: false, error: "Invalid status parameters" }, { status: 400 });
+    }
+
+    if (isSupabaseConfigured()) {
+      const adminClient = createAdminClient();
+      if (adminClient) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        await (adminClient.from("contact_inquiries") as any).update({ status }).eq("id", id);
+      }
+    }
+
+    // Update in-memory store
+    const item = memoryInquiries.find((i) => i.id === id);
+    if (item) {
+      item.status = status;
+    }
+
+    return NextResponse.json({ success: true, id, status });
+  } catch {
+    return NextResponse.json({ success: false, error: "Update failed" }, { status: 500 });
   }
 }

@@ -2,6 +2,36 @@
 
 All notable project changes should be recorded here. Keep entries factual and concise.
 
+- Real Team Data Integration, Content Audit & Phase 3/4 Backend Implementation:
+  1. **Real Team Data Integrated**: Integrated the 7 verified student coordinators from official club records into `mockTeamMembers`, `TeamPage`, and `seed.sql`:
+     - Lakshay Kalra (President)
+     - Jiya Arora (Vice President)
+     - Samanyu Thakur (Technical Head)
+     - Bhupinder Singh (Technical Head)
+     - Jashan Bhalla (Social Media Head)
+     - Ayush Sharma (Content Head)
+     - Tamanna Kakkar (Content Head)
+     Added verified LinkedIn links, exact descriptions, clean initial monograms, and non-empty category grouping (`Leadership`, `Core Leads`). All faculty references eliminated.
+  2. **Sample Event Content Removed**: Eliminated the sample Next.js workshop, sample venue, and placeholder registration form from the public website. Built an elegant, polished empty state for upcoming sessions pointing to official Instagram and LinkedIn channels.
+  3. **Public Claims Neutralized**: Audited and replaced unverified claims across all pages (FAQs, hero sub-meta, activity cards, and marquee):
+     - Removed "all club events are free", "all years and branches", "systems architecture", "open source sprints", "peer code reviews", and "mentoring circles".
+     - Standardized on confirmed, neutral, and realistic university student community messaging.
+  4. **Activity Marquee Refined**: Replaced repeated unverified activities with confirmed club items; added `aria-hidden="true"` to duplicate tracks to prevent screen-reader repetition; added pause-on-hover.
+  5. **Supabase Schema & Seed Migration**: Updated `supabase/migrations/00001_initial_schema.sql` with all 11 tables, RLS policies, and storage bucket definitions. Created `supabase/seed.sql` with the 7 verified team members and initial site settings.
+  6. **Edge Route Protection Middleware**: Added `src/middleware.ts` protecting all `/admin/*` routes with session verification via `@supabase/ssr`, redirecting unauthenticated visitors to `/admin/login`.
+  7. **Complete Coordinator Admin Dashboard Built**:
+     - `/admin/login`: Coordinator login form wrapped in Suspense boundary.
+     - `/admin/layout.tsx`: Dark admin navigation shell with sign-out and public site shortcut.
+     - `/admin`: Overview dashboard with published/unpublished content metrics.
+     - `/admin/team`: Team member management with publication toggles and order tracking.
+     - `/admin/events`: Workshop and session scheduling interface.
+     - `/admin/projects`: Project showcase management with repository privacy (`is_repo_public`) and consent flags.
+     - `/admin/gallery`: Event-based photo album & photo collections management.
+     - `/admin/announcements`: Header banner announcement management with automatic expiry.
+     - `/admin/inquiries`: Confidential inquiries inbox with status review (new, reviewed, resolved).
+     - `/admin/settings`: Official social channels management and super_admin bootstrapping guide.
+  8. **Production Build Verified**: Next.js 14 production build succeeded with 24/24 routes passing and 0 TypeScript errors.
+
 ## Unreleased
 - Initial Code2Chill project documentation and implementation plan created.
 - Completed Phase 0 (Workspace alignment, mirrored .agent/ to workspace root).
